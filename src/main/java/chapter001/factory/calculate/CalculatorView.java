@@ -19,76 +19,76 @@ import main.java.chapter001.factory.calculate.enums.CalculateStatus;
 import main.java.utils.StringUtils;
 
 /**
- * ¼ÆËãÆ÷
+ * è®¡ç®—å™¨
  *@author wangjl
- *@date 2017Äê7ÔÂ22ÈÕ
+ *@date 2017å¹´7æœˆ22æ—¥
  */
 public class CalculatorView extends JFrame {
 
 	private static final long serialVersionUID = 6675631336371856760L;
 	
 	/**
-	 * µ¥¸ö°´Å¥¿í¶È
+	 * å•ä¸ªæŒ‰é’®å®½åº¦
 	 */
 	private static final int bWidth = 30;
 	
 	/**
-	 * µ¥¸ö°´Å¥¸ß¶È
+	 * å•ä¸ªæŒ‰é’®é«˜åº¦
 	 */
 	private static final int bHeight = 20;
 	
 	/**
-	 * ¼ÆËã²ÎÊı1
+	 * è®¡ç®—å‚æ•°1
 	 */
 	private double param1;
 	
 	/**
-	 * ¼ÆËã²ÎÊı2
+	 * è®¡ç®—å‚æ•°2
 	 */
 	private double param2;
 	
 	/**
-	 * »º´æ½á¹û
+	 * ç¼“å­˜ç»“æœ
 	 */
 	private double result;
 	
 	/**
-	 * »º´æÑ¡ÔñµÄ²Ù×÷
+	 * ç¼“å­˜é€‰æ‹©çš„æ“ä½œ
 	 */
 	private AbstractOperation currentOp;
 	
 	/**
-	 * ¼ÆËã¹«Ê½Ãæ°å
+	 * è®¡ç®—å…¬å¼é¢æ¿
 	 */
 	private JTextField formula = new JTextField(25);
 	
 	/**
-	 * ¼ÆËã½á¹ûÃæ°å
+	 * è®¡ç®—ç»“æœé¢æ¿
 	 */
 	private JTextField screen = new JTextField(25);
 	
 	/**
-	 * Ö§³ÖµÄ²Ù×÷Ãû³Æ
+	 * æ”¯æŒçš„æ“ä½œåç§°
 	 */
 	private List<String> opNames = new ArrayList<String>();
 	
 	/**
-	 * ²Ù×÷°´Å¥
+	 * æ“ä½œæŒ‰é’®
 	 */
 	private List<JButton> operButtons = new ArrayList<JButton>();
 	
 	/**
-	 * ¸ù¾İ²Ù×÷Ãû»ñÈ¡²Ù×÷ÊµÀıµÄ¹¤³§
+	 * æ ¹æ®æ“ä½œåè·å–æ“ä½œå®ä¾‹çš„å·¥å‚
 	 */
 	private OperationFactory factory = new OperationFactory();
 	
 	/**
-	 * ¼ÆËãÆ÷×´Ì¬
+	 * è®¡ç®—å™¨çŠ¶æ€
 	 */
 	private CalculateStatus status;
 	
 	/**
-	 * ¹¹Ôì·½·¨
+	 * æ„é€ æ–¹æ³•
 	 * @param opNames
 	 */
 	public CalculatorView(List<String> opNames) {
@@ -102,7 +102,7 @@ public class CalculatorView extends JFrame {
 	}
 
 	/**
-	 * ³õÊ¼»¯½çÃæ×é¼ş
+	 * åˆå§‹åŒ–ç•Œé¢ç»„ä»¶
 	 */
 	private void initComponents() {
 		initUI();
@@ -124,18 +124,18 @@ public class CalculatorView extends JFrame {
 	}
 
 	/**
-	 * ³¢ÊÔ»ñÈ¡µ±Ç°ÏµÍ³µÄÍâ¹Û·ç¸ñ
+	 * å°è¯•è·å–å½“å‰ç³»ç»Ÿçš„å¤–è§‚é£æ ¼
 	 */
 	private void initUI() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
-			new RuntimeException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
 	/**
-	 * ´´½¨²Ù×÷ÀàĞÍ°´Å¥×é¼ş
+	 * åˆ›å»ºæ“ä½œç±»å‹æŒ‰é’®ç»„ä»¶
 	 */
 	private JPanel createOperationButtons() {
 		JButton opButton;
@@ -156,8 +156,8 @@ public class CalculatorView extends JFrame {
 					try {
 						setParamValue(op);
 					} catch (Exception ex) {
-						if ("¼ÆËã²ÎÊı¸ñÊ½ÓĞÎó£¬ÇëÊäÈëÊı×ÖÀàĞÍµÄ²ÎÊı".equals(ex.getMessage())) {
-							showErrorMessage("¼ÆËã²ÎÊı¸ñÊ½ÓĞÎó£¬ÇëÊäÈëÊı×ÖÀàĞÍµÄ²ÎÊı");
+						if ("è®¡ç®—å‚æ•°æ ¼å¼æœ‰è¯¯ï¼Œè¯·è¾“å…¥æ•°å­—ç±»å‹çš„å‚æ•°".equals(ex.getMessage())) {
+							showErrorMessage("è®¡ç®—å‚æ•°æ ¼å¼æœ‰è¯¯ï¼Œè¯·è¾“å…¥æ•°å­—ç±»å‹çš„å‚æ•°");
 						} else {
 							throw ex;
 						}
@@ -189,7 +189,7 @@ public class CalculatorView extends JFrame {
 	}
 
 	/**
-	 * ´´½¨ÖØÖÃ°´Å¥
+	 * åˆ›å»ºé‡ç½®æŒ‰é’®
 	 * @return
 	 */
 	private JButton createResetButton() {
@@ -206,7 +206,7 @@ public class CalculatorView extends JFrame {
 	}
 
 	/**
-	 * ´´½¨ÍË¸ñ°´Å¥
+	 * åˆ›å»ºé€€æ ¼æŒ‰é’®
 	 * @return
 	 */
 	private JButton createBackSpaceButton() {
@@ -226,7 +226,7 @@ public class CalculatorView extends JFrame {
 	}
 
 	/**
-	 * ²Ù×÷°´Å¥´¹Ö±ÅÅ²¼£¬4¸öÒ»×é
+	 * æ“ä½œæŒ‰é’®å‚ç›´æ’å¸ƒï¼Œ4ä¸ªä¸€ç»„
 	 * @return
 	 */
 	private List<JPanel> getOperPanels() {
@@ -249,7 +249,7 @@ public class CalculatorView extends JFrame {
 	}
 
 	/**
-	 * ¼ì²â²¢ÉèÖÃ¼ÆËã²ÎÊı1µÄÊôĞÔÖµ
+	 * æ£€æµ‹å¹¶è®¾ç½®è®¡ç®—å‚æ•°1çš„å±æ€§å€¼
 	 * @param op
 	 */
 	protected void setParamValue(AbstractOperation op) {
@@ -263,13 +263,13 @@ public class CalculatorView extends JFrame {
 		
 		if (!isValidParam) {
 			param1 = 0;
-			showErrorMessage("¼ÆËã²ÎÊı¸ñÊ½ÓĞÎó£¬ÇëÊäÈëÊı×ÖÀàĞÍµÄ²ÎÊı");
+			showErrorMessage("è®¡ç®—å‚æ•°æ ¼å¼æœ‰è¯¯ï¼Œè¯·è¾“å…¥æ•°å­—ç±»å‹çš„å‚æ•°");
 		}
 		param1 = result;
 	}
 	
 	/**
-	 * ÌáÊ¾²ÎÊıÊäÈë´íÎóĞÅÏ¢£¬²¢ÖØÖÃ¼ÆËãÆ÷×´Ì¬
+	 * æç¤ºå‚æ•°è¾“å…¥é”™è¯¯ä¿¡æ¯ï¼Œå¹¶é‡ç½®è®¡ç®—å™¨çŠ¶æ€
 	 */
 	private void showErrorMessage(String errMsg) {
 		JOptionPane.showMessageDialog(getParent(), errMsg);
@@ -277,7 +277,7 @@ public class CalculatorView extends JFrame {
 	}
 
 	/**
-	 * ´´½¨Êı×Ö°´Å¥×é¼şºÍÏÔÊ¾¼ÆËã½á¹û°´Å¥×é¼ş
+	 * åˆ›å»ºæ•°å­—æŒ‰é’®ç»„ä»¶å’Œæ˜¾ç¤ºè®¡ç®—ç»“æœæŒ‰é’®ç»„ä»¶
 	 * @return
 	 */
 	private JPanel createNumAndResButtons() {
@@ -346,12 +346,12 @@ public class CalculatorView extends JFrame {
 	}
 	
 	/**
-	 * ¼ÆËãµÃµ½½á¹û
+	 * è®¡ç®—å¾—åˆ°ç»“æœ
 	 */
 	protected boolean showCalculateResult() {
 		if (null == currentOp) {
 			if (StringUtils.isEmpty(screen.getText())) {
-				showErrorMessage("ÇëÏÈÊäÈë¼ÆËã²ÎÊı");
+				showErrorMessage("è¯·å…ˆè¾“å…¥è®¡ç®—å‚æ•°");
 				return false;
 			} else {
 				result = Double.parseDouble(screen.getText().trim());
@@ -370,10 +370,10 @@ public class CalculatorView extends JFrame {
 			status = CalculateStatus.RES;
 			return true;
 		} catch (Exception ex) {
-			if ("³ıÊı²»ÄÜÎª0".equals(ex.getMessage())) {
-				showErrorMessage("³ıÊı²»ÄÜÎª0");
+			if ("é™¤æ•°ä¸èƒ½ä¸º0".equals(ex.getMessage())) {
+				showErrorMessage("é™¤æ•°ä¸èƒ½ä¸º0");
 			} else {
-				showErrorMessage("¼ÆËã²ÎÊı¸ñÊ½ÓĞÎó£¬ÇëÊäÈëÊı×ÖÀàĞÍµÄ²ÎÊı");
+				showErrorMessage("è®¡ç®—å‚æ•°æ ¼å¼æœ‰è¯¯ï¼Œè¯·è¾“å…¥æ•°å­—ç±»å‹çš„å‚æ•°");
 			}
 			resetStatus();
 			return false;
@@ -381,7 +381,7 @@ public class CalculatorView extends JFrame {
 	}
 
 	/**
-	 * ÖØÖÃ¼ÆËãÆ÷×´Ì¬
+	 * é‡ç½®è®¡ç®—å™¨çŠ¶æ€
 	 */
 	private void resetStatus() {
 		status = CalculateStatus.CAL;
